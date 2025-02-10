@@ -3,10 +3,11 @@
 .data 
     message1 db 'Enter the first number : $'
     message2 db 'Enter the second number : $'
-    message3 db 'Sum is : $'
+    message3 db 'The first Number is : $'
+    message4 db 'The second Number is $:'
     num1 DW ?
     num2 DW ?
-    result DW ?
+   
 .code
     main proc
         
@@ -20,8 +21,7 @@
 
         
         mov ah, 01h
-        int 21h 
-        sub al, 30h       
+        int 21h     
         mov num1, ax      
 
         
@@ -38,8 +38,7 @@
 
        
         mov ah, 01h
-        int 21h 
-        sub al, 30h       
+        int 21h       
         mov num2, ax      
 
         
@@ -48,15 +47,6 @@
         int 21h
         mov dl, 0Ah       
         int 21h
-
-        
-        mov ax, num1    
-        add ax, num2     
-        mov result, ax    
-
-        
-        add result, 30h
-
         
         mov ah, 09h
         lea dx, message3
@@ -64,7 +54,22 @@
 
         
         mov ah, 02h
-        mov dx, result
+        mov dx, num2
+        int 21h
+
+        mov ah, 02h
+        mov dl, 0Dh       
+        int 21h
+        mov dl, 0Ah       
+        int 21h
+
+        mov ah, 09h
+        lea dx, message4
+        int 21h
+
+        
+        mov ah, 02h
+        mov dx, num1
         int 21h
 
        

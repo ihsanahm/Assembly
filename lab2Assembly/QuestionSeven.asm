@@ -1,12 +1,12 @@
 .model small
 .stack 1000h
 .data 
-    message1 db 'Enter the first number : $'
-    message2 db 'Enter the second number : $'
-    message3 db 'Sum is : $'
-    num1 DW ?
-    num2 DW ?
-    result DW ?
+    message1 db '1$'
+    message2 db '1 2$'
+    message3 db '1 2 3$'
+    message4 db '1 2 3 4 $:'
+    message5 db '1 2 3 4 5$:'
+   
 .code
     main proc
         
@@ -18,13 +18,6 @@
         lea dx, message1
         int 21h
 
-        
-        mov ah, 01h
-        int 21h 
-        sub al, 30h       
-        mov num1, ax      
-
-        
         mov ah, 02h
         mov dl, 0Dh       
         int 21h
@@ -36,11 +29,25 @@
         lea dx, message2
         int 21h
 
-       
-        mov ah, 01h
-        int 21h 
-        sub al, 30h       
-        mov num2, ax      
+        mov ah, 02h
+        mov dl, 0Dh       
+        int 21h
+        mov dl, 0Ah       
+        int 21h
+        
+        mov ah, 09h
+        lea dx, message3
+        int 21h
+
+        mov ah, 02h
+        mov dl, 0Dh       
+        int 21h
+        mov dl, 0Ah       
+        int 21h
+
+        mov ah, 09h
+        lea dx, message4
+        int 21h
 
         
         mov ah, 02h
@@ -49,24 +56,11 @@
         mov dl, 0Ah       
         int 21h
 
-        
-        mov ax, num1    
-        add ax, num2     
-        mov result, ax    
-
-        
-        add result, 30h
-
-        
         mov ah, 09h
-        lea dx, message3
+        lea dx, message5
         int 21h
 
         
-        mov ah, 02h
-        mov dx, result
-        int 21h
-
        
         mov ah, 4Ch
         int 21h

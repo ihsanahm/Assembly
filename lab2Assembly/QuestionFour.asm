@@ -3,7 +3,7 @@
 .data 
     message1 db 'Enter the first number : $'
     message2 db 'Enter the second number : $'
-    message3 db 'Sum is : $'
+    message3 db 'Subtraction is : $'
     num1 DW ?
     num2 DW ?
     result DW ?
@@ -51,7 +51,7 @@
 
         
         mov ax, num1    
-        add ax, num2     
+        sub ax, num2     
         mov result, ax    
 
         
